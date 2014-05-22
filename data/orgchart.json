@@ -1,0 +1,23 @@
+{
+    "People": [
+    {"Name":"Steve Cook","Title":"Legal Counsel","Type":"Fiduciary","Role":"Champion"},
+    {"Name":"Gerald Moorhead","Title":"Associate Principal","Type":"C-Level","Role":""},
+    {"Name":"Ray Leiker","Title":"Principal","Type":"C-Level","Role":"Decision Maker"},
+    {"Name":"Alexis McKinney","Title":"Associate","Type":"Operational Delivery","Role":""},
+    {"Name":"Cope Bailey","Title":"Senior Associate","Type":"Operational Delivery","Role":""},
+    {"Name":"Eric Rosipal","Title":"Senior Associate","Type":"Operational Delivery","Role":"Navigator"},
+    {"Name":"Gwen Tinnin","Title":"Office Manager","Type":"Facilities","Role":""},
+    {"Name":"Marty Moore","Title":"Exec. Asst./Sr. Assoc","Type":"Facilities","Role":"Navigator"}
+    ],
+    "Relationships": [
+    {"Us":"Maurielle Balczon","Them":"Ray Leiker", "Strength":"Strong"},
+    {"Us":"Maurielle Balczon","Them":"Alexis McKinney", "Strength":"Weak"},
+    {"Us":"Maurielle Balczon","Them":"Eric Rosipal", "Strength":"Weak"},
+    {"Us":"Maurielle Balczon","Them":"Gwen Tinnin", "Strength":"Weak"},
+    {"Us":"Maurielle Balczon","Them":"Marty Moore", "Strength":"Strong"},
+    {"Us":"Wayne O'Neill","Them":"Steve Cook", "Strength":"Strong"},
+    {"Us":"Wayne O'Neill","Them":"Cope Bailey", "Strength":"Strong"}
+    ],
+    "Partners": ["Melinda Robinson - Fugro Consultants (Formerly Bailey)"],
+    "Notes": "<p>Founded in 1975</p><p>www.baileyarchitects.com</p>"
+} 
