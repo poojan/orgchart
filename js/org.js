@@ -49,9 +49,13 @@
   d3.json('data/orgchart.json', function (json) {
     var people = json.People;
 
+    var peopleByType = _.groupBy(people, 'Type');
+
     people.map(function (person) {
-      person.x = pos[person.Type].x;
-      person.y = pos[person.Type].y;
+      var idx = peopleByType[person.Type].indexOf(person);
+      console.log('idx', idx);
+      person.x = pos[person.Type].x + 20;
+      person.y = pos[person.Type].y + 40 + idx * 16;
       //console.log('person', person);
     });
 
@@ -61,7 +65,6 @@
     var types = _.unique(_.pluck(people, 'Type'));
     //console.log(types);
 
-    var peopleByType = _.groupBy(people, 'Type');
     //console.log('peopleByType', peopleByType);
 
     types.map(function (type) {
@@ -110,16 +113,39 @@
       .append('rect')
       .attr('width', function (d) { return d.width; })
       .attr('height', function (d) { return d.height; })
+      .attr('rx', 10)
       .style('fill', 'none')
-      .style('stroke', '#ccc');
+      .style('stroke', '#777');
 
     rectGroup
       .append('text')
+      .attr('x', 20)
+      .attr('y', 20)
+      .style('font-weight', 'bold')
       .text(function (d) {
         return d.type;
       });
 
 
+    types.map(function (type) {
+      console.log(type, peopleByType[type]);
+      var peopleGroup = svg.append('g')
+        .attr('class', 'people')
+
+      peopleGroup
+        .selectAll('text')
+        .data(peopleByType[type]).enter()
+        .append('text')
+        .attr('x', function (d) {
+          return d.x;
+        })
+        .attr('y', function (d) {
+          return d.y;
+        })
+        .text(function (d) {
+          return d.Name;
+        });
+    });
 
 
   });
