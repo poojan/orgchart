@@ -7,5 +7,4 @@ http://app.connectionplanner.com/images/OrgChartSampleImage.png
 http://connectionplanner.apiary-mock.com/orgchart/1
 
 ## Developed by
-Poojan Shrestha
-<poojans@gmail.com>
+Poojan Shrestha <poojans@gmail.com>
