@@ -258,6 +258,13 @@
 
     var type = 'Our Connections';
     links
+      .attr('class', function (d) {
+        return d.Strength.toLowerCase();
+      })
+      .attr('stroke-dasharray', function (d) {
+        if (d.Strength === 'Weak')
+          return "2,2";
+      })
       .attr('x1', function (d) {
         console.log(d.OurPerson.x);
         return d.OurPerson.x + pos[type].x + d.OurPerson.Name.length * 5.1;

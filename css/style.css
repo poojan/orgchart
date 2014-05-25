@@ -9,7 +9,14 @@ text {
 line {
   stroke: #aaa;
 }
+line.strong {
+  stroke: #666;
+}
+line.weak {
+  stroke: #aaa;
+}
 
 rect {
   fill: none;
 }
+
