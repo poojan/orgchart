@@ -29,18 +29,27 @@ dt {
 }
 dt.champion,
 text.champion {
-  fill: blue;
-  color: blue;
+  fill: #4444cc;
+  color: #4444cc;
+  font-weight: bold;
 }
 
 dt.decision-maker,
 rect.decision-maker {
-  fill: yellow;
-  background: yellow;
+  fill: #ffff99;
+  background: #ffff99;
+  font-weight: bold;
+}
+text.decision-maker {
+  font-weight: bold;
 }
 
 dt.navigator,
 rect.navigator {
-  fill: cyan;
-  background: cyan;
+  fill: #aaffff;
+  background: #aaffff;
+  font-weight: bold;
+}
+text.navigator {
+  font-weight: bold;
 }
