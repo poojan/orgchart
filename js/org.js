@@ -230,7 +230,7 @@
           return d.y;
         })
         .text(function (d) {
-          return d.Name;
+          return d.Name + ', ' + d.Title;
         });
     });
 
