@@ -65,6 +65,13 @@
       width: rectSmallW,
       height: rectH
     },
+
+    'Legend': {
+      x: width * 2/3 + sep,
+      y: sep + rectH + sep + rectH + sep + rectH + 20,
+      width: rectSmallW + 40,
+      height: rectH + 50
+    }
   };
 
   d3.json('data/orgchart.json', function (json) {
@@ -358,6 +365,48 @@
       .append('xhtml:body')
       .style('font', '10px sans-serif')
       .html(json.Partners);
+
+
+    type = 'Legend';
+    var legendGroup = svg.append('g')
+      .attr('transform', 'translate(' + pos[type].x + ',' + pos[type].y + ')');
+
+    legendGroup
+      .append('rect')
+      .attr('class', 'light')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', pos[type].width)
+      .attr('height', pos[type].height);
+
+    legendGroup
+      .append('text')
+      .text('Legend')
+      .attr('x', 20)
+      .attr('y', 20)
+      .style('font-weight', 'bold');
+
+    var legend = '';
+    legend = legend + '<dl>';
+    legend = legend + '<dt>Decision Maker</dt>';
+    legend = legend + '<dd>A person with decision making power who can advance your goals.</dd>';
+
+    legend = legend + '<dt>Navigator</dt>';
+    legend = legend + '<dd>A person who can guide you through the organization</dd>';
+
+    legend = legend + '<dt>Champion</dt>';
+    legend = legend + '<dd>A person with leadership level influence who wants to win for their own greater good reasons</dd>';
+    legend = legend + '</dl>';
+
+    legendGroup
+      .append('foreignObject')
+      .attr('x', 12)
+      .attr('y', 32)
+      .attr('width', pos[type].width - 20)
+      .attr('height', pos[type].height)
+      .append('xhtml:body')
+      .style('font', '10px sans-serif')
+      .html(legend);
 
 
   });
