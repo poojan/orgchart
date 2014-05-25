@@ -50,7 +50,7 @@
       y: sep + rectH + sep + rectH + sep + rectH + sep,
       width: rectSmallW,
       height: rectH
-    },
+    }
   };
 
   d3.json('data/orgchart.json', function (json) {
@@ -123,6 +123,44 @@
       .attr('width', width)
       .attr('height', height);
 
+    svg
+      .append('line')
+      .attr('x1', function () {
+        var type = 'Fiduciary';
+        return pos[type].x + pos[type].width/2;
+      })
+      .attr('y1', function () {
+        var type = 'Fiduciary';
+        return pos[type].y + pos[type].height/2;
+      })
+      .attr('x2', function () {
+        var type = 'Facilities';
+        return pos[type].x + pos[type].width/2;
+      })
+      .attr('y2', function () {
+        var type = 'Facilities';
+        return pos[type].y + pos[type].height/2;
+      });
+
+    svg
+      .append('line')
+      .attr('x1', function () {
+        var type = 'Highly Integrated';
+        return pos[type].x + pos[type].width/2;
+      })
+      .attr('y1', function () {
+        var type = 'Highly Integrated';
+        return pos[type].y + pos[type].height/2;
+      })
+      .attr('x2', function () {
+        var type = 'Operational Delivery';
+        return pos[type].x + pos[type].width/2;
+      })
+      .attr('y2', function () {
+        var type = 'Operational Delivery';
+        return pos[type].y + pos[type].height/2;
+      });
+
     var rectGroup = svg.selectAll('g')
       .data(orgchart).enter()
       .append('g')
@@ -135,7 +173,7 @@
       .attr('width', function (d) { return d.width; })
       .attr('height', function (d) { return d.height; })
       .attr('rx', 10)
-      .style('fill', 'none')
+      .style('fill', 'white')
       .style('stroke', '#777');
 
     rectGroup
