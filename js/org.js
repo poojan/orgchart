@@ -58,6 +58,13 @@
       width: rectSmallW,
       height: rectH
     },
+
+    'Partners': {
+      x: sep,
+      y: sep,
+      width: rectSmallW,
+      height: rectH
+    },
   };
 
   d3.json('data/orgchart.json', function (json) {
@@ -315,6 +322,42 @@
       .append('xhtml:body')
       .style('font', '10px sans-serif')
       .html(json.Notes);
+
+    type = 'Partners';
+    var partnersGroup = svg.append('g')
+      .attr('transform', 'translate(' + pos[type].x + ',' + pos[type].y + ')');
+
+    partnersGroup
+      .append('rect')
+      .attr('class', 'light')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', pos[type].width)
+      .attr('height', pos[type].height);
+
+    partnersGroup
+      .append('text')
+      .text('Project Delivery Partners')
+      .attr('x', 20)
+      .attr('y', 20)
+      .style('font-weight', 'bold');
+
+    partnersGroup
+      .append('text')
+      .text('Project Participants')
+      .attr('x', 20)
+      .attr('y', 45)
+      .style('font-weight', 'bold');
+
+    partnersGroup
+      .append('foreignObject')
+      .attr('x', 12)
+      .attr('y', 55)
+      .attr('width', pos[type].width - 40)
+      .attr('height', pos[type].height)
+      .append('xhtml:body')
+      .style('font', '10px sans-serif')
+      .html(json.Partners);
 
 
   });
