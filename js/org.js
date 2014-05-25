@@ -262,8 +262,9 @@
         return d.Strength.toLowerCase();
       })
       .attr('stroke-dasharray', function (d) {
-        if (d.Strength === 'Weak')
-          return "2,2";
+        if (d.Strength === 'Weak') {
+          return '2,2';
+        }
       })
       .attr('x1', function (d) {
         console.log(d.OurPerson.x);
