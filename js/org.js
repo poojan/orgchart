@@ -74,7 +74,10 @@
     }
   };
 
-  d3.json('data/orgchart.json', function (json) {
+  var mainDataSource = 'http://connectionplanner.apiary-mock.com/orgchart/1';
+  var devDataSource = 'data/orgchart.json';
+
+  d3.json(mainDataSource, function (json) {
     var people = json.People;
 
     var peopleByType = _.groupBy(people, 'Type');
