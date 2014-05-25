@@ -50,7 +50,14 @@
       y: sep + rectH + sep + rectH + sep + rectH + sep,
       width: rectSmallW,
       height: rectH
-    }
+    },
+
+    'Notes': {
+      x: width * 2/3 + sep,
+      y: sep,
+      width: rectSmallW,
+      height: rectH
+    },
   };
 
   d3.json('data/orgchart.json', function (json) {
@@ -267,7 +274,6 @@
         }
       })
       .attr('x1', function (d) {
-        console.log(d.OurPerson.x);
         return d.OurPerson.x + pos[type].x + d.OurPerson.Name.length * 5.1;
       })
       .attr('y1', function (d) {
@@ -279,6 +285,36 @@
       .attr('y2', function (d) {
         return d.TheirPerson.y - 4;
       });
+
+
+    type = 'Notes';
+    var notesGroup = svg.append('g')
+      .attr('transform', 'translate(' + pos[type].x + ',' + pos[type].y + ')');
+
+    notesGroup
+      .append('rect')
+      .attr('class', 'light')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', pos[type].width)
+      .attr('height', pos[type].height);
+
+    notesGroup
+      .append('text')
+      .text('Notes')
+      .attr('x', 20)
+      .attr('y', 20)
+      .style('font-weight', 'bold');
+
+    notesGroup
+      .append('foreignObject')
+      .attr('x', 12)
+      .attr('y', 40)
+      .attr('width', pos[type].width)
+      .attr('height', pos[type].height)
+      .append('xhtml:body')
+      .style('font', '10px sans-serif')
+      .html(json.Notes);
 
 
   });
