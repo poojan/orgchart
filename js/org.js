@@ -65,16 +65,19 @@
     });
 
     var relationships = json.Relationships;
+    console.log('relationships', relationships);
     window.relationships = relationships;
     window.people = people;
 
     var us = _.unique(_.pluck(relationships, 'Us'));
+    var relationshipsByUs = _.groupBy(relationships, 'Us');
 
     var ourPeople = [];
     us.map(function (name) {
       ourPeople.push({
         Name: name,
-        Type: 'Our Connections'
+        Type: 'Our Connections',
+        Relationships: relationshipsByUs[name]
       });
     });
 
@@ -84,6 +87,11 @@
       //person.y = pos[person.Type].y + 40 + idx * 16;
       person.x = 20;
       person.y = 40 + idx * 16;
+    });
+
+    relationships.map(function (relationship) {
+      relationship.OurPerson = _.find(ourPeople, { 'Name': relationship.Us });
+      relationship.TheirPerson = _.find(people, { 'Name': relationship.Them });
     });
 
     var orgchart = [];
@@ -206,42 +214,63 @@
     });
 
 
-  var ourPeopleGroup = svg.append('g')
-    .attr('transform', function () {
-      var type = 'Our Connections';
-      return 'translate(' + pos[type].x + ',' + pos[type].y + ')';
-    })
-    .attr('class', 'our-connections');
+    var ourPeopleGroup = svg.append('g')
+      .attr('transform', function () {
+        var type = 'Our Connections';
+        return 'translate(' + pos[type].x + ',' + pos[type].y + ')';
+      })
+      .attr('class', 'our-connections');
 
-  ourPeopleGroup
-    .append('rect')
-    .attr('width', 200)
-    .attr('height', 100)
-    .attr('rx', 10)
-    .style('fill', 'none')
-    .style('stroke', '#777');
+    ourPeopleGroup
+      .append('rect')
+      .attr('width', 200)
+      .attr('height', 100)
+      .attr('rx', 10)
+      .style('fill', 'none')
+      .style('stroke', '#777');
 
-  ourPeopleGroup
-    .append('text')
-    .text('Our Connections')
-    .attr('x', 20)
-    .attr('y', 20)
-    .style('font-weight', 'bold');
+    ourPeopleGroup
+      .append('text')
+      .text('Our Connections')
+      .attr('x', 20)
+      .attr('y', 20)
+      .style('font-weight', 'bold');
 
-  ourPeopleGroup
-    .append('g')
-    .selectAll('text')
-    .data(ourPeople).enter()
-    .append('text')
-    .attr('x', function (d) {
-      return d.x;
-    })
-    .attr('y', function (d) {
-      return d.y;
-    })
-    .text(function (d) {
-      return d.Name;
-    });
+    ourPeopleGroup
+      .append('g')
+      .selectAll('text')
+      .data(ourPeople).enter()
+      .append('text')
+      .attr('x', function (d) {
+        return d.x;
+      })
+      .attr('y', function (d) {
+        return d.y;
+      })
+      .text(function (d) {
+        return d.Name;
+      });
+
+    var links = svg.append('g')
+      .selectAll('line')
+      .data(relationships)
+      .enter().append('line');
+
+    var type = 'Our Connections';
+    links
+      .attr('x1', function (d) {
+        console.log(d.OurPerson.x);
+        return d.OurPerson.x + pos[type].x + d.OurPerson.Name.length * 5.1;
+      })
+      .attr('y1', function (d) {
+        return d.OurPerson.y + pos[type].y - 4;
+      })
+      .attr('x2', function (d) {
+        return d.TheirPerson.x - 4;
+      })
+      .attr('y2', function (d) {
+        return d.TheirPerson.y - 4;
+      });
 
 
   });
