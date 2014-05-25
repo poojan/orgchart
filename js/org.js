@@ -220,9 +220,33 @@
         .attr('class', 'people');
 
       peopleGroup
+        .selectAll('rect')
+        .data(peopleByType[type]).enter()
+        .append('rect')
+        .attr('class', function (d) {
+          return d.Role.toLowerCase().replace(' ', '-');
+        })
+        .attr('x', function (d) {
+          return d.x;
+        })
+        .attr('y', function (d) {
+          return d.y - 10;
+        })
+        .attr('width', function (d) {
+          var nameAndTitle = d.Name + ', ' + d.Title;
+          return nameAndTitle.length * 5.2;
+        })
+        .attr('height', function (d) {
+          return 12;
+        });
+
+      peopleGroup
         .selectAll('text')
         .data(peopleByType[type]).enter()
         .append('text')
+        .attr('class', function (d) {
+          return d.Role.toLowerCase().replace(' ', '-');
+        })
         .attr('x', function (d) {
           return d.x;
         })
@@ -388,13 +412,13 @@
 
     var legend = '';
     legend = legend + '<dl>';
-    legend = legend + '<dt>Decision Maker</dt>';
+    legend = legend + '<dt class="decision-maker" >Decision Maker</dt>';
     legend = legend + '<dd>A person with decision making power who can advance your goals.</dd>';
 
-    legend = legend + '<dt>Navigator</dt>';
+    legend = legend + '<dt class="navigator">Navigator</dt>';
     legend = legend + '<dd>A person who can guide you through the organization</dd>';
 
-    legend = legend + '<dt>Champion</dt>';
+    legend = legend + '<dt class="champion">Champion</dt>';
     legend = legend + '<dd>A person with leadership level influence who wants to win for their own greater good reasons</dd>';
     legend = legend + '</dl>';
 

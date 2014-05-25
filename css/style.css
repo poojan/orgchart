@@ -24,3 +24,23 @@ rect {
   stroke: #ccc;
 }
 
+dt {
+  display: inline-block;
+}
+dt.champion,
+text.champion {
+  fill: blue;
+  color: blue;
+}
+
+dt.decision-maker,
+rect.decision-maker {
+  fill: yellow;
+  background: yellow;
+}
+
+dt.navigator,
+rect.navigator {
+  fill: cyan;
+  background: cyan;
+}
