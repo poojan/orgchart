@@ -3,7 +3,7 @@
   'use strict';
 
   var width = 960;
-  var height = 550;
+  var height = 565;
 
   var rectW = width/3;
   var rectSmallW = width/4;
@@ -70,7 +70,7 @@
       x: width * 2/3 + sep,
       y: sep + rectH + sep + rectH + sep + rectH + 20,
       width: rectSmallW + 40,
-      height: rectH + 50
+      height: rectH + 55
     }
   };
 
